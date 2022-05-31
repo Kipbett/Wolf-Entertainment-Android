@@ -16,8 +16,8 @@
 
         <ImageView
             android:id="@+id/lyImage"
-            android:layout_width="250dp"
-            android:layout_height="150dp"
+            android:layout_width="150dp"
+            android:layout_height="100dp"
             android:layout_weight="1"
             app:srcCompat="@drawable/ic_baseline_add_a_photo_24" />
 
