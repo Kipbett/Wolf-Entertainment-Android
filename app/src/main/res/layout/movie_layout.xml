@@ -32,7 +32,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Movie Title"
-                android:textSize="24dp"
+                android:textSize="20dp"
                 android:textStyle="bold"
                 android:textColor="@color/white"/>
 
@@ -41,7 +41,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Release Year"
-                android:textSize="20dp"
+                android:textSize="18dp"
                 android:textColor="@color/white"/>
 
             <TextView
