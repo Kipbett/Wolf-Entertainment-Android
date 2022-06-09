@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ImageView ivposter;
     private TextView tvTittle, tvGenre, tvMvGenre, tvActors, tvMvActors, tvRatings, tvMvRatings, tvPlot, tvRuntime, tvMvRuntime;
-    private String searchTitle;
+    private String searchTitle, searchYear, year = "";
     RequestQueue requestQueue;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +47,12 @@ public class MainActivity extends AppCompatActivity {
         tvMvRuntime = findViewById(R.id.tvMvRuntime);
 
         searchTitle = extra.getString("title");
+        searchYear = extra.getString("year");
         getSupportActionBar().setTitle(searchTitle);
+        if(searchYear.length() > 4)
+            year = searchYear.substring(0,4);
+        else
+            year = searchYear;
 
         requestQueue = Volley.newRequestQueue(this);
 
@@ -59,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void getData() {
 
-        String url = "http://www.omdbapi.com/?t="+searchTitle+"&apikey=42adcc97";
+        String url = "http://www.omdbapi.com/?t="+searchTitle+"&y="+year+"&apikey=42adcc97";
 
         JsonObjectRequest movie = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
