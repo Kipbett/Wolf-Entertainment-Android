@@ -1,5 +1,6 @@
 package com.wolf.wolfentertainment.adapter;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -7,15 +8,24 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.wolf.wolfentertainment.MainActivity;
 import com.wolf.wolfentertainment.R;
-import com.wolf.wolfentertainment.SearchActivity;
 import com.wolf.wolfentertainment.model.MovieModel;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.List;
 
@@ -33,7 +43,8 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieAdapter
     @Override
     public MovieAdapterHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.movie_layout, parent, false);
-        return new MovieAdapterHolder(view);
+        MovieAdapterHolder mah = new MovieAdapterHolder(view);
+        return mah;
     }
 
     @Override
@@ -44,7 +55,8 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieAdapter
         holder.lyRuntime.setText(mm.getType());
         holder.lyYear.setText(mm.getYear());
         holder.lyTitle.setText(mm.getTitle());
-        holder.lyImage.setOnClickListener(new View.OnClickListener() {
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, MainActivity.class);
@@ -74,4 +86,5 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieAdapter
             lyRuntime = itemView.findViewById(R.id.lyType);
         }
     }
+
 }

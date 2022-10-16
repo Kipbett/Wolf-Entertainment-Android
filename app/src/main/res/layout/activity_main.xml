@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:padding="5dp"
-    android:background="@color/cyan">
+    android:padding="5dp">
 
     <ImageView
         android:id="@+id/poster"
@@ -28,6 +27,7 @@
         android:text="Movie Tittle"
         android:textSize="32sp"
         android:textStyle="bold"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/poster" />
@@ -50,6 +50,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="0"
             android:gravity="start"
+            android:textColor="@color/black"
             android:text="Genre: "
             android:textSize="18dp"
             android:textStyle="bold"/>
@@ -59,6 +60,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:textColor="@color/black"
             android:text="Genre"
             android:textSize="18dp"/>
 
@@ -82,6 +84,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="0"
             android:gravity="start"
+            android:textColor="@color/black"
             android:text="Actors: "
             android:textSize="18dp"
             android:textStyle="bold"/>
@@ -91,6 +94,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:textColor="@color/black"
             android:text="Actors"
             android:textSize="18dp"/>
 
@@ -114,6 +118,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="0"
             android:gravity="start"
+            android:textColor="@color/black"
             android:text="Rating: "
             android:textSize="18dp"
             android:textStyle="bold" />
@@ -123,6 +128,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:textColor="@color/black"
             android:text="Rating"
             android:textSize="18dp" />
 
@@ -132,8 +138,10 @@
         android:id="@+id/tvPlot"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:gravity="start"
+        android:gravity="center"
+        android:textAlignment="center"
         android:text="Movie Plot"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -157,6 +165,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0"
+            android:textColor="@color/black"
             android:text="Runtime: "
             android:textStyle="bold"
             android:textSize="18dp"/>
@@ -166,8 +175,24 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:textColor="@color/black"
             android:text="TextView"
             android:textSize="18dp"/>
+
     </LinearLayout>
+
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="144dp"
+        app:adSize="BANNER"
+        app:adUnitId="ca-app-pub-3940256099942544/6300978111"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvPlot" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

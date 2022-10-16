@@ -3,11 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Wolf/AndroidStudioProjects/WolfEntertainment/app/src/main/res/drawable/dialogue_bg.xml" value="0.1945" />
         <entry key="..\:/Users/Wolf/AndroidStudioProjects/WolfEntertainment/app/src/main/res/drawable/movie_bg.xml" value="0.175" />
         <entry key="..\:/Users/Wolf/AndroidStudioProjects/WolfEntertainment/app/src/main/res/layout/activity_main.xml" value="0.22" />
-        <entry key="..\:/Users/Wolf/AndroidStudioProjects/WolfEntertainment/app/src/main/res/layout/activity_search.xml" value="0.1859375" />
+        <entry key="..\:/Users/Wolf/AndroidStudioProjects/WolfEntertainment/app/src/main/res/layout/activity_search.xml" value="0.25" />
         <entry key="..\:/Users/Wolf/AndroidStudioProjects/WolfEntertainment/app/src/main/res/layout/activity_splash.xml" value="0.22" />
-        <entry key="..\:/Users/Wolf/AndroidStudioProjects/WolfEntertainment/app/src/main/res/layout/movie_layout.xml" value="0.22" />
+        <entry key="..\:/Users/Wolf/AndroidStudioProjects/WolfEntertainment/app/src/main/res/layout/movie_dialogue.xml" value="0.25" />
+        <entry key="..\:/Users/Wolf/AndroidStudioProjects/WolfEntertainment/app/src/main/res/layout/movie_layout.xml" value="0.1" />
       </map>
     </option>
   </component>

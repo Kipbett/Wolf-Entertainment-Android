@@ -3,6 +3,7 @@
     package="com.wolf.wolfentertainment">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
 
     <application
         android:allowBackup="true"
@@ -12,6 +13,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.WolfEntertainment"
         android:usesCleartextTraffic="true">
+
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-3683437462836746~5555721966"/>
+
         <activity
             android:name=".SplashActivity"
             android:exported="true">
@@ -27,7 +33,9 @@
         </activity>
         <activity
             android:name=".MainActivity"
-            android:exported="true"></activity>
+            android:exported="true"
+            android:parentActivityName=".SearchActivity">
+        </activity>
     </application>
 
 </manifest>

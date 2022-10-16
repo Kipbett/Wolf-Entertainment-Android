@@ -1,12 +1,16 @@
 package com.wolf.wolfentertainment;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -16,6 +20,17 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.FullScreenContentCallback;
+import com.google.android.gms.ads.LoadAdError;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.OnPaidEventListener;
+import com.google.android.gms.ads.ResponseInfo;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
+import com.google.android.gms.ads.interstitial.InterstitialAd;
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
 import com.google.android.material.button.MaterialButton;
 import com.wolf.wolfentertainment.adapter.MovieAdapter;
 import com.wolf.wolfentertainment.model.MovieModel;
@@ -30,38 +45,54 @@ import java.util.Locale;
 
 public class SearchActivity extends AppCompatActivity {
 
-    private MaterialButton buttonSearch;
+    private ImageView buttonSearch;
     private EditText search;
     private RecyclerView recyclerView;
     private RequestQueue queue;
     private List<MovieModel> movie_list = new ArrayList<>();
     private MovieModel movieModel;
+    private AdView adSearch;
+    String search_str;
+    String url_all = "all";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
 
-        buttonSearch = findViewById(R.id.buttonSearch);
+        buttonSearch = findViewById(R.id.searchImage);
         search = findViewById(R.id.eSearch);
         recyclerView = findViewById(R.id.recycerView);
+        adSearch = findViewById(R.id.adViewHome);
+
+        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(@NonNull InitializationStatus initializationStatus) {
+            }
+        });
+
+        AdRequest adRequest = new AdRequest.Builder().build();
+        adSearch.loadAd(adRequest);
 
         queue = Volley.newRequestQueue(this);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+
+        loadData(url_all);
+
         buttonSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                search_str = search.getText().toString();
                 movie_list.clear();
-                loadData();
+                loadData(search_str);
             }
         });
     }
 
-    private void loadData() {
-        String search_str = search.getText().toString();
-        String url = "http://www.omdbapi.com/?s="+search_str+"&apikey=42adcc97";
+    private void loadData(String search_mv) {
+        String url = "http://www.omdbapi.com/?s="+search_mv+"&apikey=42adcc97";
 
         JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
