@@ -6,19 +6,49 @@
     android:layout_height="match_parent"
     tools:context=".SearchActivity">
 
-    <EditText
-        android:id="@+id/eSearch"
-        android:layout_width="264dp"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Search By Title"
-        android:inputType="text"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/recycerView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.108"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/searchImage"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:padding="10dp">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/user_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="4"
+            app:boxCornerRadiusTopEnd="20dp"
+            app:boxCornerRadiusTopStart="20dp"
+            app:boxCornerRadiusBottomEnd="20dp"
+            app:boxCornerRadiusBottomStart="20dp">
+
+            <EditText
+                android:id="@+id/search"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:hint="Search By Name"
+                android:singleLine="true" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/search_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight=".1"
+            android:text="search"
+            android:textStyle="bold"
+            app:cornerRadius="20dp"
+            app:icon="@drawable/ic_search"
+            android:layout_marginLeft="10dp"/>
+    </LinearLayout>
+
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycerView"
@@ -26,7 +56,6 @@
         android:layout_height="match_parent"
         android:layout_marginTop="72dp"
         android:scrollbarAlwaysDrawHorizontalTrack="true"
-        app:layout_constraintTop_toBottomOf="@+id/eSearch"
         tools:layout_editor_absoluteX="0dp" />
 
     <com.google.android.gms.ads.AdView
@@ -42,13 +71,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <ImageView
-        android:id="@+id/searchImage"
-        android:layout_width="97dp"
-        android:layout_height="42dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/eSearch"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_search" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

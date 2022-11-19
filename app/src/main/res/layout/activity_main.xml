@@ -181,6 +181,19 @@
 
     </LinearLayout>
 
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/trailer_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Watch Trailer"
+        app:cornerRadius="20dp"
+        app:icon="@drawable/ic_video"
+        app:iconGravity="end"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvPlot" />
+
     <com.google.android.gms.ads.AdView
         android:id="@+id/adView"
         android:layout_width="match_parent"

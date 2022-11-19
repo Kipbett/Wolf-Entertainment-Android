@@ -45,7 +45,7 @@ import java.util.Locale;
 
 public class SearchActivity extends AppCompatActivity {
 
-    private ImageView buttonSearch;
+    private MaterialButton buttonSearch;
     private EditText search;
     private RecyclerView recyclerView;
     private RequestQueue queue;
@@ -60,8 +60,8 @@ public class SearchActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
 
-        buttonSearch = findViewById(R.id.searchImage);
-        search = findViewById(R.id.eSearch);
+        buttonSearch = findViewById(R.id.search_btn);
+        search = findViewById(R.id.search);
         recyclerView = findViewById(R.id.recycerView);
         adSearch = findViewById(R.id.adViewHome);
 

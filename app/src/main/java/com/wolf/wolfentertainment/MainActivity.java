@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView tvTittle, tvGenre, tvMvGenre, tvActors, tvMvActors, tvRatings, tvMvRatings, tvPlot, tvRuntime, tvMvRuntime;
     private String searchTitle, searchYear, year = "";
     private AdView adView;
+    private MaterialButton btn_trailer;
     RequestQueue requestQueue;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,10 +58,19 @@ public class MainActivity extends AppCompatActivity {
         tvRuntime = findViewById(R.id.tvRuntime);
         tvMvRuntime = findViewById(R.id.tvMvRuntime);
         adView = findViewById(R.id.adView);
+        btn_trailer = findViewById(R.id.trailer_button);
 
         MobileAds.initialize(this, new OnInitializationCompleteListener() {
             @Override
             public void onInitializationComplete(@NonNull InitializationStatus initializationStatus) {
+            }
+        });
+
+        btn_trailer.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(MainActivity.this, "Coming Soon\n Be Patient", Toast.LENGTH_SHORT).show();
             }
         });
         AdRequest adRequest = new AdRequest.Builder().build();
