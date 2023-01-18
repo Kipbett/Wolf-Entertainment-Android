@@ -7,10 +7,18 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.Network;
+import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.transition.Visibility;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -20,6 +28,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.gms.ads.AdError;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.FullScreenContentCallback;
@@ -45,13 +54,15 @@ import java.util.Locale;
 
 public class SearchActivity extends AppCompatActivity {
 
-    private MaterialButton buttonSearch;
+    private MaterialButton buttonSearch, btn_net;
     private EditText search;
     private RecyclerView recyclerView;
     private RequestQueue queue;
     private List<MovieModel> movie_list = new ArrayList<>();
     private MovieModel movieModel;
     private AdView adSearch;
+    private TextView net_txt;
+    private ImageView net_img;
     String search_str;
     String url_all = "all";
 
@@ -64,6 +75,39 @@ public class SearchActivity extends AppCompatActivity {
         search = findViewById(R.id.search);
         recyclerView = findViewById(R.id.recycerView);
         adSearch = findViewById(R.id.adViewHome);
+        btn_net = findViewById(R.id.reload_btn);
+        net_txt = findViewById(R.id.net_txt);
+        net_img = findViewById(R.id.net_img);
+
+        ConnectivityManager connectivityManager = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetwork = connectivityManager.getActiveNetworkInfo();
+        boolean isDataEnabled = activeNetwork != null && activeNetwork.isConnectedOrConnecting();
+        if (isDataEnabled) {
+            queue = Volley.newRequestQueue(this);
+            recyclerView.setLayoutManager(new LinearLayoutManager(this));
+            loadData(url_all);
+            buttonSearch.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    search_str = search.getText().toString();
+                    movie_list.clear();
+                    loadData(search_str);
+                }
+            });
+        } else {
+            btn_net.setVisibility(View.VISIBLE);
+            net_txt.setVisibility(View.VISIBLE);
+            net_img.setVisibility(View.VISIBLE);
+            btn_net.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(SearchActivity.this, SearchActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+            });
+        }
+
 
         MobileAds.initialize(this, new OnInitializationCompleteListener() {
             @Override
@@ -73,22 +117,6 @@ public class SearchActivity extends AppCompatActivity {
 
         AdRequest adRequest = new AdRequest.Builder().build();
         adSearch.loadAd(adRequest);
-
-        queue = Volley.newRequestQueue(this);
-
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-
-        loadData(url_all);
-
-        buttonSearch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                search_str = search.getText().toString();
-                movie_list.clear();
-                loadData(search_str);
-            }
-        });
     }
 
     private void loadData(String search_mv) {

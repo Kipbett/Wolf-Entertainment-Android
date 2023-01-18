@@ -7,16 +7,16 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_launcher_wolf"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/ic_launcher_wolf_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.WolfEntertainment"
         android:usesCleartextTraffic="true">
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-3683437462836746~5555721966"/>
+            android:value="ca-app-pub-3683437462836746"/>
 
         <activity
             android:name=".SplashActivity"

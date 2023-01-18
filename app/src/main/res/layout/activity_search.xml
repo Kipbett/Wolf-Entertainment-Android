@@ -15,17 +15,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:padding="10dp">
+        android:padding="1dp">
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/user_email"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="4"
-            app:boxCornerRadiusTopEnd="20dp"
-            app:boxCornerRadiusTopStart="20dp"
-            app:boxCornerRadiusBottomEnd="20dp"
-            app:boxCornerRadiusBottomStart="20dp">
+            android:layout_weight="4">
 
             <EditText
                 android:id="@+id/search"
@@ -41,7 +37,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight=".1"
+            app:iconTint="@color/white"
             android:text="search"
+            android:textColor="@color/white"
             android:textStyle="bold"
             app:cornerRadius="20dp"
             app:icon="@drawable/ic_search"
@@ -58,6 +56,46 @@
         android:scrollbarAlwaysDrawHorizontalTrack="true"
         tools:layout_editor_absoluteX="0dp" />
 
+    <ImageView
+        android:id="@+id/net_img"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="152dp"
+        android:visibility="gone"
+        android:src="@drawable/ic_baseline_wifi_24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/net_txt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:visibility="gone"
+        android:text="Check Your Network Connection And Try Again."
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/net_img" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/reload_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:visibility="gone"
+        android:text="Reload"
+        app:cornerRadius="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/net_txt" />
+
     <com.google.android.gms.ads.AdView
         android:id="@+id/adViewHome"
         android:layout_width="match_parent"
@@ -66,7 +104,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="144dp"
         app:adSize="BANNER"
-        app:adUnitId="ca-app-pub-3940256099942544/6300978111"
+        app:adUnitId="ca-app-pub-3683437462836746/"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

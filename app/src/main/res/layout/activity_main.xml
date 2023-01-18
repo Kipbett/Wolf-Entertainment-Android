@@ -9,7 +9,7 @@
 
     <ImageView
         android:id="@+id/poster"
-        android:layout_width="0dp"
+        android:layout_width="300dp"
         android:layout_height="250dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -187,6 +187,8 @@
         android:layout_height="wrap_content"
         android:text="Watch Trailer"
         app:cornerRadius="20dp"
+        android:textColor="@color/white"
+        app:iconTint="@color/white"
         app:icon="@drawable/ic_video"
         app:iconGravity="end"
         android:layout_marginTop="20dp"
@@ -202,7 +204,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="144dp"
         app:adSize="BANNER"
-        app:adUnitId="ca-app-pub-3940256099942544/6300978111"
+        app:adUnitId="ca-app-pub-3683437462836746/"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
