@@ -5,23 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".SplashActivity"
-    android:background="@color/green">
-
-    <TextView
-        android:id="@+id/tvSplash"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-condensed"
-        android:gravity="center"
-        android:text="@string/enter"
-        android:textSize="55dp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.202" />
+    android:background="@drawable/logo">
 
     <TextView
         android:id="@+id/tvTrade"
@@ -30,8 +14,9 @@
         android:layout_marginBottom="64dp"
         android:text="@string/wolf"
         android:textSize="18dp"
-        android:textColor="@color/design_default_color_error"
+        android:textColor="@color/black"
         android:fontFamily="serif-monospace"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

@@ -76,7 +76,6 @@
         android:gravity="center"
         android:visibility="gone"
         android:text="Check Your Network Connection And Try Again."
-        android:textColor="@color/black"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -104,7 +103,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="144dp"
         app:adSize="BANNER"
-        app:adUnitId="ca-app-pub-3683437462836746/"
+        app:adUnitId=""
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

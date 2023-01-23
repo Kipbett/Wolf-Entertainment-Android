@@ -1,9 +1,11 @@
 package com.wolf.wolfentertainment;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.transition.Visibility;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -19,11 +21,14 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
+import com.google.android.gms.ads.AdError;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.FullScreenContentCallback;
 import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.OnPaidEventListener;
+import com.google.android.gms.ads.ResponseInfo;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.google.android.gms.ads.interstitial.InterstitialAd;
@@ -38,8 +43,52 @@ public class MainActivity extends AppCompatActivity {
     private ImageView ivposter;
     private TextView tvTittle, tvGenre, tvMvGenre, tvActors, tvMvActors, tvRatings, tvMvRatings, tvPlot, tvRuntime, tvMvRuntime;
     private String searchTitle, searchYear, year = "";
-    private AdView adView;
     private MaterialButton btn_trailer;
+    private InterstitialAd inter_ad = new InterstitialAd() {
+        @Nullable
+        @Override
+        public FullScreenContentCallback getFullScreenContentCallback() {
+            return null;
+        }
+
+        @Nullable
+        @Override
+        public OnPaidEventListener getOnPaidEventListener() {
+            return null;
+        }
+
+        @NonNull
+        @Override
+        public ResponseInfo getResponseInfo() {
+            return null;
+        }
+
+        @NonNull
+        @Override
+        public String getAdUnitId() {
+            return null;
+        }
+
+        @Override
+        public void setFullScreenContentCallback(@Nullable FullScreenContentCallback fullScreenContentCallback) {
+
+        }
+
+        @Override
+        public void setImmersiveMode(boolean b) {
+
+        }
+
+        @Override
+        public void setOnPaidEventListener(@Nullable OnPaidEventListener onPaidEventListener) {
+
+        }
+
+        @Override
+        public void show(@NonNull Activity activity) {
+
+        }
+    };
     RequestQueue requestQueue;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,14 +106,69 @@ public class MainActivity extends AppCompatActivity {
         tvPlot =findViewById(R.id.tvPlot);
         tvRuntime = findViewById(R.id.tvRuntime);
         tvMvRuntime = findViewById(R.id.tvMvRuntime);
-        adView = findViewById(R.id.adView);
         btn_trailer = findViewById(R.id.trailer_button);
 
-        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+        MobileAds.initialize(this);
+
+        AdRequest adRequest = new AdRequest.Builder().build();
+
+        InterstitialAd.load(this, "", adRequest,
+                new InterstitialAdLoadCallback() {
+                    @Override
+                    public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+//                        super.onAdFailedToLoad(loadAdError);
+                        inter_ad = null;
+                    }
+
+                    @Override
+                    public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
+//                        super.onAdLoaded(interstitialAd);
+                        inter_ad = interstitialAd;
+                        inter_ad.show(MainActivity.this);
+                    }
+                });
+
+
+        inter_ad.setFullScreenContentCallback(new FullScreenContentCallback() {
             @Override
-            public void onInitializationComplete(@NonNull InitializationStatus initializationStatus) {
+            public void onAdClicked() {
+                super.onAdClicked();
+                Toast.makeText(getApplicationContext(), "Ad Clicked", Toast.LENGTH_SHORT).show();
             }
+
+            @Override
+            public void onAdDismissedFullScreenContent() {
+                super.onAdDismissedFullScreenContent();
+                inter_ad = null;
+            }
+
+            @Override
+            public void onAdFailedToShowFullScreenContent(@NonNull AdError adError) {
+                super.onAdFailedToShowFullScreenContent(adError);
+                inter_ad = null;
+            }
+
+            @Override
+            public void onAdImpression() {
+                super.onAdImpression();
+                Toast.makeText(getApplicationContext(), "Impression Made", Toast.LENGTH_SHORT).show();
+            }
+
+
+            @Override
+            public void onAdShowedFullScreenContent() {
+                super.onAdShowedFullScreenContent();
+                Toast.makeText(getApplicationContext(), "Ad Showed Fullscreen", Toast.LENGTH_SHORT).show();
+            }
+
         });
+
+        if (inter_ad != null) {
+            inter_ad.show(MainActivity.this);
+        } else {
+            Toast.makeText(this, "Failed to load Ad", Toast.LENGTH_SHORT).show();
+        }
+
 
         btn_trailer.setOnClickListener(new View.OnClickListener(){
 
@@ -73,8 +177,6 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "Coming Soon\n Be Patient", Toast.LENGTH_SHORT).show();
             }
         });
-        AdRequest adRequest = new AdRequest.Builder().build();
-        adView.loadAd(adRequest);
 
         searchTitle = extra.getString("title");
         searchYear = extra.getString("year");

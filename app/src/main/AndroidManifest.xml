@@ -16,11 +16,12 @@
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-3683437462836746"/>
+            android:value="ca-app-pub-3683437462836746~"/>
 
         <activity
             android:name=".SplashActivity"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/Theme.Wolf">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -29,7 +30,8 @@
         </activity>
         <activity
             android:name=".SearchActivity"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/Theme.Wolf">
         </activity>
         <activity
             android:name=".MainActivity"
