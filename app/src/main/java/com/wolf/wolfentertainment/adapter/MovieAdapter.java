@@ -63,6 +63,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieAdapter
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.putExtra("title", mm.getTitle());
                 intent.putExtra("year", mm.getYear());
+                intent.putExtra("imdbID", mm.getImdbID());
                 context.startActivity(intent);
             }
         });

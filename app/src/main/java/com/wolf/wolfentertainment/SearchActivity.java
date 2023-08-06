@@ -133,7 +133,8 @@ public class SearchActivity extends AppCompatActivity {
                                 movieModel = new MovieModel(searches.getString("Poster"),
                                         searches.getString("Title"),
                                         searches.getString("Year"),
-                                        searches.getString("Type"));
+                                        searches.getString("Type"),
+                                        searches.getString("imdbID"));
                                 movie_list.add(movieModel);
                             }
                         } catch (JSONException e) {
